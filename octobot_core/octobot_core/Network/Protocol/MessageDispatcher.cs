@@ -1,4 +1,6 @@
-﻿using System;
+﻿using octobot_core.Logging;
+using octobot_core.Network.Protocol.Handlers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +10,23 @@ namespace octobot_core.network.protocol
 {
     enum ProcessState { WAITING,HDR_RECV }
 
-    class MessageHandler
+    class MessageDispatcher
     {
+        Log log;
+        Dictionary<String, IMessageHandler> messageHandlers;
+        public MessageDispatcher(Log log)
+        {
+            this.log = log;
+            this.messageHandlers = new Dictionary<string, IMessageHandler>();
+            this.RegisterMessageHandlers();
+        }
+
+        private void RegisterMessageHandlers()
+        {
+            this.messageHandlers.Add(ProtocolCommands.MSG_HELLO,new HelloMessageHandler());
+        }
+
+
         private ProcessState state = ProcessState.WAITING;
         public void parseMessage(String message)
         {
@@ -30,13 +47,20 @@ namespace octobot_core.network.protocol
 
        private void handleGenericMessage(String message)
         {
+            IMessageHandler handler = null;
+            if( this.messageHandlers.TryGetValue(message,out handler))
+            { 
+              handler.Handle(this.log);
+            }
+            else
+            {
+                this.log.Write(LogLevel.ERROR, LogType.CONSOLE, "No suitable handler was found for message: " + message);
+            }
             // Fighting Game commands 
-
-
+            
             // Command and Control commands 
 
             // Other commands 
-
         }
     }
 }

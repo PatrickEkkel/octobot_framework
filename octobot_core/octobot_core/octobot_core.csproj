@@ -42,12 +42,17 @@
   <ItemGroup>
     <Compile Include="Logging\Log.cs" />
     <Compile Include="Logging\LogFactory.cs" />
-    <Compile Include="network\CommandAndControlClient.cs" />
-    <Compile Include="network\CommandControlServer.cs" />
-    <Compile Include="network\protocol\Message.cs" />
-    <Compile Include="network\protocol\MessageFactory.cs" />
-    <Compile Include="network\protocol\MessageHandler.cs" />
-    <Compile Include="network\protocol\ProtocolCommands.cs" />
+    <Compile Include="Network\CommandAndControlClient.cs" />
+    <Compile Include="Network\OctoServer.cs" />
+    <Compile Include="Network\OctoServerManager.cs" />
+    <Compile Include="Network\Protocol\Handlers\HelloMessageHandler.cs" />
+    <Compile Include="Network\Protocol\Handlers\IMessageHandler.cs" />
+    <Compile Include="Network\Protocol\Message.cs" />
+    <Compile Include="Network\Protocol\MessageFactory.cs" />
+    <Compile Include="Network\Protocol\MessageDispatcher.cs" />
+    <Compile Include="Network\Protocol\ProtocolCommands.cs" />
+    <Compile Include="Network\ServerConfiguration.cs" />
+    <Compile Include="Network\Threading\ServerContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,5 @@
 ﻿using octobot_core.Logging;
-using octobot_core.network;
+using octobot_core.Network;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,18 +17,8 @@ namespace octobot_CCServer
 
         static void Main(string[] args)
         {
-            try
-            {
-                CommandControlServer server = new CommandControlServer();
-                server.start();
-                Console.Read();
-            }
-
-            catch (Exception e)
-            {
-                Console.WriteLine("Error..... " + e.StackTrace);
-            }
-
+            OctoServerManager octoServermanager = new OctoServerManager();
+            octoServermanager.SpawnServer(); 
             Console.ReadLine();
         }
     }

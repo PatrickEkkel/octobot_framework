@@ -1,5 +1,6 @@
 ﻿using octobot_core.Logging;
 using octobot_core.network.protocol;
+using octobot_core.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +11,24 @@ using System.Threading.Tasks;
 
 namespace octobot_core.network
 {
- public class CommandControlServer
+ public class OctoServer
     {
+        public bool isActiveConnection { get; set; }
+
         private IPAddress ipAdress;
         private TcpListener listenerList;
-        private MessageHandler messageHandler;
-
+        private MessageDispatcher messageHandler;
         private Log log;
-        public CommandControlServer()
+        private bool isRunning = true;
+       
+        public OctoServer(ServerConfiguration configuration)
         {
             this.ipAdress = IPAddress.Parse("127.0.0.1");
-            listenerList = new TcpListener(this.ipAdress, 8001);
-            LogFactory logfactory = new LogFactory();
-            this.messageHandler = new MessageHandler();
-            this.log = logfactory.createLog();
+            listenerList = new TcpListener(this.ipAdress, configuration.port);
+            this.log = LogFactory.getInstance().createLog();
+            this.messageHandler = new MessageDispatcher(this.log);
+            this.isActiveConnection = false;
+        
         }
 
         public void start()
@@ -35,6 +40,7 @@ namespace octobot_core.network
         private void listen()
         {
             Socket s = listenerList.AcceptSocket();
+            isActiveConnection = true;
             processRequest(s);
         }
 
@@ -42,7 +48,7 @@ namespace octobot_core.network
         {
            byte[] m = new byte[1024];
        
-            while (true)
+            while (isRunning)
             {
                int  k = s.Receive(m);
                 if (k != 0)
@@ -53,7 +59,6 @@ namespace octobot_core.network
                         sb.Append(Convert.ToChar(m[i]));             
                     }
                     messageHandler.parseMessage(sb.ToString());
-                    //log.Write(LogLevel.INFO, LogType.CONSOLE, sb.ToString());
                 }
             }
         }
@@ -61,7 +66,8 @@ namespace octobot_core.network
         public void stop()
         {
             listenerList.Stop();
-
+            this.isRunning = false;
+            this.isActiveConnection = false;
         }
     }
 }

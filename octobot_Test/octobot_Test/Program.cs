@@ -13,25 +13,9 @@ namespace octobot_Test
     {
         static void Main(string[] args)
         {
-            try
-
-            {
-
                 CommandAndControlClient client = new CommandAndControlClient();
                 client.connect();
-
-                Console.Read();
-                
-
-            }
-
-            catch (Exception e)
-
-            {
-
-                Console.WriteLine("Error..... " + e.StackTrace);
-
-            }
+                Console.Read();           
         }
     }
 }

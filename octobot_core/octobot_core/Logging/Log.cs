@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace octobot_core.Logging
 {
-    public enum LogLevel { INFO,WARNING,ERROR };
+    public enum LogLevel { INFO,WARNING,ERROR,DEBUG,TRACE };
     public enum LogType { CONSOLE,FILE };
    public  class Log
     {
@@ -31,12 +31,16 @@ namespace octobot_core.Logging
 
         private void writeConsole(LogLevel loglevel,String message)
         {
-            switch(loglevel)
+
+            Console.WriteLine("[" + loglevel.ToString() + "]: " + message);
+           /* switch (loglevel)
             {
                 case LogLevel.INFO:
                     Console.WriteLine("[" + loglevel.ToString() + "]: "  + message);
                     break;
+
             }
+            */
         }
         private void writeFile(LogLevel loglevel)
         {

@@ -21,8 +21,7 @@ namespace octobot_core.network
         public CommandAndControlClient()
         {
             this.tcpClient = new TcpClient();
-            LogFactory logfactory = new LogFactory();
-            this.log = logfactory.createLog();
+            this.log = LogFactory.getInstance().createLog();
             this.messageFactory = new MessageFactory();
         }
 
