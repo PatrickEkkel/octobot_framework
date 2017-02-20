@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\KeyboardInput\CommandMove.cs" />
+    <Compile Include="Game\KeyboardInput\InputMarshaller.cs" />
+    <Compile Include="Game\KeyboardInput\Link.cs" />
+    <Compile Include="Game\KeyboardInput\Move.cs" />
+    <Compile Include="Game\KeyboardInput\MoveFactory.cs" />
     <Compile Include="Logging\Log.cs" />
     <Compile Include="Logging\LogFactory.cs" />
     <Compile Include="Network\ClientConfiguration.cs" />
@@ -56,6 +61,12 @@
     <Compile Include="Network\ServerConfiguration.cs" />
     <Compile Include="Network\Threading\ServerContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\octobot_Input\octobot_Input\Interceptor\Interceptor\Interceptor.csproj">
+      <Project>{c451a00e-77f1-4f3f-b7ee-27dc712ea316}</Project>
+      <Name>Interceptor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
