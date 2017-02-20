@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,10 +74,6 @@
     <ProjectReference Include="..\..\..\octobot_core\octobot_core\octobot_core.csproj">
       <Project>{8eaa301d-2317-4d50-94ed-9fd7a1405343}</Project>
       <Name>octobot_core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Interceptor\Interceptor\Interceptor.csproj">
-      <Project>{c451a00e-77f1-4f3f-b7ee-27dc712ea316}</Project>
-      <Name>Interceptor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

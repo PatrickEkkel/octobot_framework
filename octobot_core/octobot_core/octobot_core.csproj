@@ -63,7 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\octobot_Input\octobot_Input\Interceptor\Interceptor\Interceptor.csproj">
+    <ProjectReference Include="..\..\..\Interceptor\Interceptor\Interceptor.csproj">
       <Project>{c451a00e-77f1-4f3f-b7ee-27dc712ea316}</Project>
       <Name>Interceptor</Name>
     </ProjectReference>

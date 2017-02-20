@@ -1,5 +1,4 @@
-﻿using Interceptor;
-using octobot_core.Game.KeyboardInput;
+﻿using octobot_core.Game.KeyboardInput;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +13,13 @@ namespace octobot_Input
         {
             InputMarshaller marshaller = new InputMarshaller();
             marshaller.loadInterceptor();
+            CommandConsole commandConsole = new CommandConsole();
             while (true)
             {
-                System.Threading.Thread.Sleep(500);
-                marshaller.executeMove(MoveFactory.S_MP());
+                commandConsole.readFromConsole();
+               // marshaller.executeMove(MoveFactory.S_MP());
             //    System.Threading.Thread.Sleep(500);
-                marshaller.executeMove(MoveFactory.C_MK());
+               // marshaller.executeMove(MoveFactory.C_MK());
             }
 
         }

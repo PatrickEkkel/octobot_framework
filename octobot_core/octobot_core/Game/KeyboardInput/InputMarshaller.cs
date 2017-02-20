@@ -25,5 +25,10 @@ namespace octobot_core.Game.KeyboardInput
             move.execute(interceptor);
             wait();
         }
+        public void executeLink(Link move)
+        {
+            move.execute(interceptor);
+            wait();
+        }
     }
 }
