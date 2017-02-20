@@ -1,4 +1,5 @@
 ﻿using octobot_core.network;
+using octobot_core.Network;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,9 +14,15 @@ namespace octobot_Test
     {
         static void Main(string[] args)
         {
-                CommandAndControlClient client = new CommandAndControlClient();
-                client.connect();
-                Console.Read();           
+            ClientConfiguration configuration = new ClientConfiguration();
+            configuration.mode = ClientMode.Standalone;
+            configuration.port = 8001;
+
+            OctoClient octoClient = new OctoClient(configuration);
+            octoClient.connect();
+
+
+            Console.Read();           
         }
     }
 }

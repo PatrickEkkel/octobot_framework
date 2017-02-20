@@ -15,10 +15,9 @@ namespace octobot_core.network.protocol
         {
             StringBuilder sb = new StringBuilder();
             int valueLength = ProtocolCommands.MSG_SIZE_VALUE.Length;
-            String protocolmessage = type + ProtocolCommands.SEPERATOR + message;
+            String protocolmessage = type + ProtocolCommands.MSG_SEPERATOR + message + ProtocolCommands.TERMINATION_CHAR;
             ASCIIEncoding asen = new ASCIIEncoding();
             byte[] ba = asen.GetBytes(protocolmessage.ToString());
-            // networkStream.Write(ba, 0, ba.Length);
             return ba;
         }
     }

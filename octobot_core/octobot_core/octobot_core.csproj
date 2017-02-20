@@ -42,9 +42,11 @@
   <ItemGroup>
     <Compile Include="Logging\Log.cs" />
     <Compile Include="Logging\LogFactory.cs" />
-    <Compile Include="Network\CommandAndControlClient.cs" />
+    <Compile Include="Network\ClientConfiguration.cs" />
+    <Compile Include="Network\OctoClient.cs" />
     <Compile Include="Network\OctoServer.cs" />
     <Compile Include="Network\OctoServerManager.cs" />
+    <Compile Include="Network\Protocol\Handlers\ClientServerPortEventArgs.cs" />
     <Compile Include="Network\Protocol\Handlers\HelloMessageHandler.cs" />
     <Compile Include="Network\Protocol\Handlers\IMessageHandler.cs" />
     <Compile Include="Network\Protocol\Message.cs" />

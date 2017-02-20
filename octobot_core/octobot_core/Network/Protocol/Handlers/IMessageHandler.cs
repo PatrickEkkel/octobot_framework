@@ -9,6 +9,6 @@ namespace octobot_core.network.protocol
 {
     interface IMessageHandler
     {
-        void Handle(Log log);
+        void Handle(Log log,String Payload);
     }
 }

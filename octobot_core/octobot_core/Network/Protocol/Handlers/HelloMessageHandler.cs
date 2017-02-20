@@ -10,9 +10,9 @@ namespace octobot_core.Network.Protocol.Handlers
 {
     class HelloMessageHandler : IMessageHandler
     {
-        public void Handle(Log log)
+        public void Handle(Log log,String Payload)
         {
-            log.WriteConsole("Hello eventhandler werkt blijkbaar");
+            log.WriteConsole("Recieved Hello from : " + Payload);
         }
     }
 }

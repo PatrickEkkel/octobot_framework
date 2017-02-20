@@ -11,7 +11,6 @@ namespace octobot_core.Network.Threading
 {
     class ServerContainer
     {
-
         private OctoServer server { get; set; }
         private Thread thread { get; set; }
         private ServerConfiguration configuration { get; set; }
@@ -40,7 +39,7 @@ namespace octobot_core.Network.Threading
             if (this.server.isActiveConnection)
             {
                 server.stop();
-                if(thread.IsAlive)
+                if (thread.IsAlive)
                 {
                     // fallback naar abort als het niet goedschiks wil
                     thread.Abort();
@@ -50,10 +49,7 @@ namespace octobot_core.Network.Threading
             else
             {
                 thread.Abort();
-            }
-
-         
-               
+            }      
         }
     }
 }

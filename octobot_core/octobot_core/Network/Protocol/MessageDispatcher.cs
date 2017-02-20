@@ -12,6 +12,11 @@ namespace octobot_core.network.protocol
 
     class MessageDispatcher
     {
+
+        // A delegate type for hooking up change notifications.
+        public delegate void ClientServerPortRecievedEventHandler(object sender, ClientServerPortEventArgs e);
+
+        public event ClientServerPortRecievedEventHandler ClientPortRecieved;
         Log log;
         Dictionary<String, IMessageHandler> messageHandlers;
         public MessageDispatcher(Log log)
@@ -33,14 +38,24 @@ namespace octobot_core.network.protocol
 
            String [] message_components =   message.Split(':');
            String header =   message_components[0];
+           // Strip the Terminator char of the message
+           message_components[1] =  message_components[1].Replace("#", "");
 
            switch(header)
             {
                 case ProtocolCommands.MSG_SIZE:
                     state = ProcessState.HDR_RECV;
+                    log.Write(LogLevel.DEBUG, LogType.CONSOLE, "MSG_SIZE command recieved");
+                    log.Write(LogLevel.DEBUG, LogType.CONSOLE, "MSG_SIZE value: " + message_components[1]);
                     break;
                 case ProtocolCommands.MSG_FREEMSG:
                     handleGenericMessage(message_components[1]);
+                    break;
+                case ProtocolCommands.MSG_CLNTSOCKETPORT:
+                    ClientPortRecieved(this, new ClientServerPortEventArgs() { port = Convert.ToInt32(message_components[1]) });
+                    break;
+                default:
+                    log.Write(LogLevel.DEBUG, LogType.CONSOLE, "Unknown protocolCommand recieved: " + message);
                     break;
             }
         }
@@ -48,13 +63,26 @@ namespace octobot_core.network.protocol
        private void handleGenericMessage(String message)
         {
             IMessageHandler handler = null;
-            if( this.messageHandlers.TryGetValue(message,out handler))
-            { 
-              handler.Handle(this.log);
-            }
-            else
+
+            if (message != null)
             {
-                this.log.Write(LogLevel.ERROR, LogType.CONSOLE, "No suitable handler was found for message: " + message);
+                String []  message_components =  message.Split(ProtocolCommands.FREEMSG_SEPERATOR);
+
+                if (this.messageHandlers.TryGetValue(message_components[0], out handler))
+                {
+                    if(message_components.Length > 1)
+                    {
+                        handler.Handle(this.log, message_components[1]);
+                    }
+                    else
+                    {
+                        handler.Handle(this.log, String.Empty);
+                    }
+                }
+                else
+                {
+                    this.log.Write(LogLevel.ERROR, LogType.CONSOLE, "No suitable handler was found for message: " + message);
+                }
             }
             // Fighting Game commands 
             

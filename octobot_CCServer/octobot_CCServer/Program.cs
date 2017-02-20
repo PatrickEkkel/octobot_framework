@@ -17,8 +17,9 @@ namespace octobot_CCServer
 
         static void Main(string[] args)
         {
-            OctoServerManager octoServermanager = new OctoServerManager();
-            octoServermanager.SpawnServer(); 
+            OctoServerManager octoServermanager = new OctoServerManager(8000);
+            octoServermanager.SpawnDefaultServer();
+
             Console.ReadLine();
         }
     }

@@ -12,20 +12,35 @@ namespace octobot_core.Network
     {
 
         List<ServerContainer> serverContainers;
+        ServerContainer defaultServer;
 
         Log log;
-        int minPortRange = 8001;
-        int maxPortRange = 8010;
+        int minPortRange = 2;
+        int maxPortRange = 10;
         int maxServer = 0;
         int actualPort = 0;
-         
+        int startingRange = 0;
 
-        public OctoServerManager()
+        public OctoServerManager(int startingRange)
         {
+            this.startingRange = startingRange;
             this.serverContainers = new List<ServerContainer>();
+            // TODO: er zit niks wat checkt of de maxPortRange overschreden is ;-)
             this.maxServer = maxPortRange - minPortRange;
-            this.actualPort = minPortRange;
+            this.actualPort = minPortRange + startingRange;
             this.log = LogFactory.getInstance().createLog();
+        }
+
+
+        public ServerConfiguration SpawnDefaultServer()
+        {
+            int port = startingRange + 1;
+            ServerConfiguration result = new ServerConfiguration();
+            result.port = port;
+            this.defaultServer = new ServerContainer(result);
+            this.log.Write(LogLevel.TRACE, LogType.CONSOLE, "Creating Default ServerContainer on port: " + port);
+            defaultServer.startContainer();
+            return result;
         }
 
         public ServerConfiguration SpawnServer()
