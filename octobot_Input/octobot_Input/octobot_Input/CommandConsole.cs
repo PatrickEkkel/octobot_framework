@@ -1,4 +1,5 @@
-﻿using octobot_core.Game.KeyboardInput;
+﻿using octobot_core.Game;
+using octobot_core.Game.KeyboardInput;
 using octobot_core.Logging;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,6 @@ namespace octobot_Input
 {
     class CommandConsole
     {
-        private const String S_MP = "s_mp";
-        private const String C_MP = "c_mp";
-        private const String C_HP = "c_hp";
-        private const String C_MK = "c_mk";
-        private const String QUIT = "stop";
         private char FOLLOW_UP = '>';
         private char LINK = '.';
         private InputMarshaller marshaller;
@@ -60,20 +56,20 @@ namespace octobot_Input
             Move result = null;
             switch (command.Trim())
             {
-                case C_MP:
+                case Moves.C_MP:
                     result = MoveFactory.C_MP();
                    // this.log.Write(LogLevel.TRACE, LogType.CONSOLE, "Crouching MP");
                    //   this.marshaller.executeMove(MoveFactory.C_MP());
                     break;
-                case C_HP:
+                case Moves.C_HP:
                     result = MoveFactory.C_HP();
                    // this.log.Write(LogLevel.TRACE, LogType.CONSOLE, "Crouching HP");
                    // this.marshaller.executeMove(MoveFactory.C_HP());
                     break;
-                case C_MK:
+                case Moves.C_MK:
                     result = MoveFactory.C_MK();
                     break;
-                case S_MP:
+                case Moves.S_MP:
                     result = MoveFactory.S_MP();
                     break;
             }

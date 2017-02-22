@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "octobot_CCServer", "octobot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "octobot_core", "..\octobot_core\octobot_core\octobot_core.csproj", "{8EAA301D-2317-4D50-94ED-9FD7A1405343}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interceptor", "..\..\Interceptor\Interceptor\Interceptor.csproj", "{C451A00E-77F1-4F3F-B7EE-27DC712EA316}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "octobot_Injected", "octobot_Injected\octobot_Injected.csproj", "{1A985BC2-99AB-4A52-A85F-CB388DC31D7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8EAA301D-2317-4D50-94ED-9FD7A1405343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EAA301D-2317-4D50-94ED-9FD7A1405343}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EAA301D-2317-4D50-94ED-9FD7A1405343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C451A00E-77F1-4F3F-B7EE-27DC712EA316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C451A00E-77F1-4F3F-B7EE-27DC712EA316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C451A00E-77F1-4F3F-B7EE-27DC712EA316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C451A00E-77F1-4F3F-B7EE-27DC712EA316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A985BC2-99AB-4A52-A85F-CB388DC31D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A985BC2-99AB-4A52-A85F-CB388DC31D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A985BC2-99AB-4A52-A85F-CB388DC31D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A985BC2-99AB-4A52-A85F-CB388DC31D7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
